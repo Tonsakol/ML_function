@@ -1,4 +1,4 @@
-# ML_function
+# ML_classification_function
 ## Installation
 ```
 pip3 install -r requirements.txt
