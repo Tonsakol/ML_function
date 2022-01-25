@@ -6,9 +6,9 @@ from skimage import data, img_as_float
 from skimage.restoration import denoise_nl_means
 import pywt
 
-def noise_removal(IMG_PATH):
-    img = cv2.imread(IMG_PATH)
-    denoise = denoise_nl_means(img, patch_size=5, patch_distance=7, h=0.8,channel_axis=2)
+def noise_removal(IMAGE):
+    #img = cv2.imread(IMG_PATH)
+    denoise = denoise_nl_means(IMAGE, patch_size=5, patch_distance=7, h=0.8,channel_axis=2)
     
     denoise = denoise * 255
     return denoise.astype(np.uint8)
@@ -19,8 +19,8 @@ def NormalizeData(data):
 def Norm(data):
     return ((data - np.min(data))*255) / (np.max(data) - np.min(data))
 
-def enhance_img(IMG_PATH):
-    denoise = noise_removal(IMG_PATH)
+def enhance_img(IMAGE):
+    denoise = noise_removal(IMAGE)
 
     (b, g, r) = cv2.split(denoise)
     # get v_in

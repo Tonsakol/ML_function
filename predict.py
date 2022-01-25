@@ -7,9 +7,9 @@ class Predict():
         self.model_path = MODEL_PATH
         self.model = load_model_weights(self.model_path)
 
-    def gen_enhance_img(self, IMG_PATH):
-        denoise = noise_removal(IMG_PATH)
-        en_img = enhance_img(IMG_PATH)
+    def gen_enhance_img(self, IMAGE):
+        denoise = noise_removal(IMAGE)
+        en_img = enhance_img(IMAGE)
         return en_img
 
     def gen_metadata(self, age_approx, anatom_site, sex):
@@ -45,10 +45,10 @@ class Predict():
         
         return meta
 
-    def predict_img(self, IMG_PATH, metadata):
+    def predict_img(self, IMAGE, metadata):
         IMAGE_SHAPE = (299, 299, 3)
         META_DIM = 10
-        img = self.gen_enhance_img(IMG_PATH)
+        img = self.gen_enhance_img(IMAGE)
         img = np.reshape(img, (1, IMAGE_SHAPE[0], IMAGE_SHAPE[1], 3))
 
         meta = metadata
